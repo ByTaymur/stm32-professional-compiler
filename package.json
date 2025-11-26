@@ -1,0 +1,187 @@
+{
+  "name": "stm32-professional-compiler",
+  "displayName": "STM32 Professional Compiler",
+  "description": "Open-source professional STM32 development environment with optimized build profiles, real-time monitoring, live variable editing, and CubeMX integration. No proprietary tools needed.",
+  "version": "1.0.0",
+  "publisher": "bytaymur",
+  "author": "Muhammed Taymur (https://github.com/ByTaymur)",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Debuggers",
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "stm32",
+    "arm",
+    "cortex-m",
+    "embedded",
+    "microcontroller",
+    "cubemx",
+    "gcc",
+    "openocd",
+    "debugging",
+    "flash"
+  ],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ByTaymur/stm32-professional-compiler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ByTaymur/stm32-professional-compiler/issues"
+  },
+  "homepage": "https://github.com/ByTaymur/stm32-professional-compiler#readme",
+  "activationEvents": [
+    "workspaceContains:**/*.ioc",
+    "workspaceContains:**/Makefile",
+    "onDebug"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "stm32-pro.build",
+        "title": "Build Project",
+        "category": "STM32",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "stm32-pro.flash",
+        "title": "Flash Firmware",
+        "category": "STM32",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "stm32-pro.monitor",
+        "title": "Open Live Monitor",
+        "category": "STM32",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "stm32-pro.setup",
+        "title": "Setup Project",
+        "category": "STM32",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "stm32-pro.optimize",
+        "title": "Optimize Makefile",
+        "category": "STM32",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "stm32-pro.clean",
+        "title": "Clean Build",
+        "category": "STM32",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "stm32-pro.debug",
+        "title": "Start Debug Session",
+        "category": "STM32",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "stm32-pro.connect",
+        "title": "Test Connection",
+        "category": "STM32",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "stm32-pro.disconnect",
+        "title": "Disconnect",
+        "category": "STM32",
+        "icon": "$(debug-disconnect)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "stm32-pro",
+          "title": "STM32 Compiler",
+          "icon": "$(circuit-board)"
+        }
+      ]
+    },
+    "views": {
+      "stm32-pro": [
+        {
+          "id": "stm32-pro.actions",
+          "name": "Quick Actions"
+        },
+        {
+          "id": "stm32-pro.profiles",
+          "name": "Build Profiles"
+        },
+        {
+          "id": "stm32-pro.connection",
+          "name": "Connection"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "stm32-pro.setup",
+          "when": "view == stm32-pro.actions",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "STM32 Professional Compiler",
+      "properties": {
+        "stm32-pro.defaultProfile": {
+          "type": "string",
+          "default": "O2",
+          "enum": [
+            "O0",
+            "O1",
+            "O2",
+            "O3",
+            "Os",
+            "Og"
+          ],
+          "description": "Default optimization profile"
+        },
+        "stm32-pro.gccPath": {
+          "type": "string",
+          "default": "arm-none-eabi-gcc",
+          "description": "Path to ARM GCC compiler"
+        },
+        "stm32-pro.openocdPath": {
+          "type": "string",
+          "default": "openocd",
+          "description": "Path to OpenOCD"
+        },
+        "stm32-pro.autoFlash": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically flash after successful build"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish:openvsx": "ovsx publish"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.130",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.32.0",
+    "ovsx": "^0.8.0",
+    "typescript": "^5.9.3"
+  }
+}
