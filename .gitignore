@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+out/
+dist/
+*.vsix
+
+# IDE
+.vscode-test/
+.vscode/settings.json
+.vscode/launch.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+vsix-build/
+
+# Documentation files (keep in repo but not in package)
+*.docx
+STM32-for-VSCode-*.docx
+
+# Gemini/AI artifacts
+.gemini/

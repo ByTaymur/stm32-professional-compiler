@@ -155,17 +155,48 @@
         "stm32-pro.gccPath": {
           "type": "string",
           "default": "arm-none-eabi-gcc",
-          "description": "Path to ARM GCC compiler"
+          "description": "Path to ARM GCC compiler (leave default for auto-detection)"
         },
         "stm32-pro.openocdPath": {
           "type": "string",
           "default": "openocd",
-          "description": "Path to OpenOCD"
+          "description": "Path to OpenOCD (leave default for auto-detection)"
         },
         "stm32-pro.autoFlash": {
           "type": "boolean",
           "default": false,
           "description": "Automatically flash after successful build"
+        },
+        "stm32-pro.toolchainPath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom ARM toolchain root directory (auto-detected if empty)"
+        },
+        "stm32-pro.svdCachePath": {
+          "type": "string",
+          "default": "",
+          "description": "SVD files cache directory (uses extension storage if empty)"
+        },
+        "stm32-pro.preferredProgrammer": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "stlink",
+            "jlink",
+            "cmsis-dap",
+            "dfu"
+          ],
+          "default": "auto",
+          "description": "Preferred programmer type"
+        },
+        "stm32-pro.buildSystem": {
+          "type": "string",
+          "enum": [
+            "makefile",
+            "cmake"
+          ],
+          "default": "makefile",
+          "description": "Build system preference"
         }
       }
     }
@@ -176,6 +207,9 @@
     "watch": "tsc -watch -p ./",
     "package": "vsce package",
     "publish:openvsx": "ovsx publish"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "@types/node": "^18.19.130",
